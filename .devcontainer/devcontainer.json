@@ -1,0 +1,26 @@
+{
+    "name": "langchain_lab",
+    "build": {
+      "dockerfile": "Dockerfile"
+    },
+    "customizations": {
+      "vscode": {
+        "extensions": [
+          "dbaeumer.vscode-eslint",
+          "ms-toolsai.vscode-ai",
+          "ms-python.python",
+          "GitHub.copilot",
+          "GitHub.copilot-chat",
+          "ms-toolsai.jupyter",
+          "ms-python.autopep8",
+          "mhutchie.git-graph",
+          "tamasfe.even-better-toml",
+          "DavidAnson.vscode-markdownlint",
+          "ms-python.python"
+        ]
+      }
+    },
+    "containerEnv": {
+      "OPENAI_API_KEY": ""
+    }
+  }
