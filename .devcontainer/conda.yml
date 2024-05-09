@@ -18,8 +18,8 @@ dependencies:
     - langchain-openai==0.1.1
     - langchain-text-splitters==0.0.1
     - panel==1.4.2
-    - jupyter_bokeh
-    - jupyterlab
+    - jupyter_bokeh==4.0.4
+    - jupyterlab==4.2.0
     - numexpr==2.9.0
     - docarray==0.40.0
     - wikipedia==1.4.0
