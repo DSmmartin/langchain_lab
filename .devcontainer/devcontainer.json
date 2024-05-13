@@ -22,6 +22,10 @@
     },
     "containerEnv": {
       "OPENAI_API_KEY": "",
-      "TMDB_BEARER_TOKEN": ""
+      "TMDB_BEARER_TOKEN": "",
+      "LANGCHAIN_API_KEY": "",
+      "LANGCHAIN_PROJECT": "",
+      "LANGCHAIN_ENDPOINT": "https://api.smith.langchain.com",
+      "LANGCHAIN_TRACING_V2": "true"
     }
   }
