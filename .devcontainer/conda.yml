@@ -11,13 +11,14 @@ dependencies:
   - pylint=3.1.0
   - loguru=0.7.2
   - pip:
-    - langchain-experimental==0.0.55
-    - langchain==0.1.13
-    - langchain-community==0.0.29
+    - langchain-experimental==0.0.58
+    - langchain==0.1.20
+    - langchain-community==0.0.38
     - langchain-core
-    - langchain-openai==0.1.1
-    - langchain-text-splitters==0.0.1
-    - langsmith==0.1.57
+    - langchain-openai==0.1.7
+    - langchain-text-splitters==0.0.2
+    - langchainhub==0.1.15
+    - langsmith==0.1.59
     - panel==1.4.2
     - jupyter_bokeh==4.0.4
     - jupyterlab==4.2.0
