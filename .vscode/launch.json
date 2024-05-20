@@ -1,0 +1,19 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug main",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/apps_lab/cinema_assistant/main.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/apps_lab/",
+            "env": {
+                "PYTHONPATH": "/workspaces/langchain_lab/apps_lab/cinema_assistant"
+            }
+        }
+    ]
+}
