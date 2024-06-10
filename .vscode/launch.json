@@ -10,9 +10,9 @@
             "request": "launch",
             "program": "${workspaceFolder}/apps_lab/cinema_assistant/main.py",
             "console": "integratedTerminal",
-            "cwd": "${workspaceFolder}/apps_lab/",
+            "cwd": "${workspaceFolder}/apps_lab/cinema_assistant",
             "env": {
-                "PYTHONPATH": "/workspaces/langchain_lab/apps_lab/cinema_assistant"
+                "PYTHONPATH": "/workspaces/langchain_lab/apps_lab/"
             }
         }
     ]
