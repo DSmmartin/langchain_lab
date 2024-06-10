@@ -1,13 +1,34 @@
 from loguru import logger
-from utils import get_id_movie, get_movie_details
+from langchain_openai import ChatOpenAI
+from langchain import hub
+from langchain.agents import AgentExecutor, create_tool_calling_agent
+from cinema_assistant.custom_tools import get_search_movies_openai_function, search_movies
 
 
-movie_name = "The Lord of the Rings The Fellowship of the Ring"
-movie_id = get_id_movie(movie_name)
-logger.info(f"Movie ID: {movie_id} from Movie Name: {movie_name}")
+movie_name_example = "The Lord of the Rings The Fellowship of the Ring"
+logger.info(f"Obtaining details of {movie_name_example}")
 
-logger.info(f"Getting movie details for movie ID: {movie_id}")
-movie_details = get_movie_details(movie_id)
-print(movie_details)
 
-logger.info("End of the program.")
+model = ChatOpenAI(
+    model="gpt-3.5-turbo",
+    temperature=0
+).bind(
+    functions=[get_search_movies_openai_function()])
+
+model.invoke(
+    ("human", "What is the genre of the film Shawshank Redemption?")
+)
+
+prompt = hub.pull("hwchase17/openai-functions-agent")
+
+agent = create_tool_calling_agent(model, [search_movies], prompt)
+
+
+agent_executor = AgentExecutor(
+    agent=agent,
+    tools=[search_movies],
+    verbose=True)
+
+agent_executor.invoke({
+    "input": "Give me the genres of the fillm The lord of the rings, the fellowship film?"}
+)
