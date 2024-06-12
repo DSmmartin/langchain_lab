@@ -53,8 +53,7 @@ def get_movie_details(movie_id: int):
 
     :param movie_id: The ID of the movie.
     :type movie_id: int
-    :return: A dictionary containing the movie details. The keys are 'original_title', 'genres',
-     'reviews', and 'release_date'.
+    :return: A dictionary containing the movie details.
     :rtype: dict
     """
 

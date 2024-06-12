@@ -7,15 +7,13 @@ from cinema_assistant.themovie_api import get_id_movie, get_movie_details
 
 
 class MovieSearch(BaseModel):
-    """This is a search tool that allows you to search properties of a movie (release date, genres
-    and some reviews)."""
+    """This is a search tool that allows you to search properties of a movie (release date, genres and some reviews)."""
     query: str = Field(description="The movie you want to search for")
 
 
 @tool(args_schema=MovieSearch)
 def search_movies(query: str):
-    """This is a search tool that allows you to search properties of a movie (release date, genres
-    and some reviews)."""
+    """This is a search tool that allows you to search properties of a movie (release date, genres and some reviews)."""
     movie_id = get_id_movie(query)
     return get_movie_details(movie_id) if movie_id else {"error": "No movie found"}
 
