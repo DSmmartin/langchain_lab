@@ -1,3 +1,5 @@
+"""Main script for the cinema assistant app.
+"""
 from loguru import logger
 from langchain_openai import ChatOpenAI
 from langchain import hub
@@ -5,8 +7,8 @@ from langchain.agents import AgentExecutor, create_tool_calling_agent
 from cinema_assistant.custom_tools import get_search_movies_openai_function, search_movies
 
 
-movie_name_example = "The Lord of the Rings The Fellowship of the Ring"
-logger.info(f"Obtaining details of {movie_name_example}")
+MOVIE_NAME_EXAMPLE = "The Lord of the Rings The Fellowship of the Ring"
+logger.info(f"Obtaining details of {MOVIE_NAME_EXAMPLE}")
 
 
 model = ChatOpenAI(

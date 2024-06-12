@@ -1,9 +1,14 @@
+""" This module contains functions to fetch movie details from The Movie Database (TMDB).
+"""
 import os
+import sys
 import json
 import requests
+from loguru import logger
 
 API_THEMOVIE_BASE_URL = "https://api.themoviedb.org"
 API_THEMOVIE_VERSION = "3"
+THEMOVIE_VERSION_URL = f"{API_THEMOVIE_BASE_URL}/{API_THEMOVIE_VERSION}"
 PAGES = 1
 
 
@@ -18,22 +23,27 @@ def get_id_movie(film_title: str):
     """
 
     parsed_title = film_title.replace(" ", "%20")
-    url = f"{API_THEMOVIE_BASE_URL}/{API_THEMOVIE_VERSION}/search/movie?query={parsed_title}&include_adult=false&language=en-US&page={PAGES}"
+    url = f"{THEMOVIE_VERSION_URL}/search/movie?" + \
+        f"query={parsed_title}" + \
+        "&include_adult=false" + \
+        "&language=en-US" \
+        f"&page={PAGES}"
 
     headers = {
         "accept": "application/json",
         "Authorization": f"Bearer {os.environ.get('TMDB_BEARER_TOKEN')}"
     }
     try:
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers, timeout=5)
     except requests.exceptions.RequestException as e:
-        exit(f"Error: {e}")
+        sys.exit(f"Error: {e}")
 
     if response.status_code != 200:
-        exit(f"Error: {response.status_code}")
+        sys.exit(f"Error: {response.status_code}")
     try:
         return int(json.loads(response.text)['results'][0]['id'])
     except IndexError as e:
+        logger.error(f"Error: {e}")
         return None
 
 
@@ -43,22 +53,25 @@ def get_movie_details(movie_id: int):
 
     :param movie_id: The ID of the movie.
     :type movie_id: int
-    :return: A dictionary containing the movie details. The keys are 'original_title', 'genres', 'reviews', and 'release_date'.
+    :return: A dictionary containing the movie details. The keys are 'original_title', 'genres',
+     'reviews', and 'release_date'.
     :rtype: dict
     """
 
-    url = f"{API_THEMOVIE_BASE_URL}/{API_THEMOVIE_VERSION}/movie/{str(movie_id)}?append_to_response=genre%2Creviews&language=en-US"
+    url = f"{THEMOVIE_VERSION_URL}/movie/{str(movie_id)}" + \
+        "?append_to_response=genre%2Creviews" + \
+        "&language=en-US"
     headers = {
         "accept": "application/json",
-        "Authorization": f"Bearer {os.environ.get('TMDB_BEARER_TOKEN')}"
+        "Authorization": f"Bearer {os.environ.get('TMDB_BEARER_TOKEN', timeout=5)}"
     }
     try:
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers, timeout=5)
     except requests.exceptions.RequestException as e:
-        exit(f"Error: {e}")
+        sys.exit(f"Error: {e}")
 
     if response.status_code != 200:
-        exit(f"Error: {response.status_code}")
+        sys.exit(f"Error: {response.status_code}")
 
     response = json.loads(response.text)
     original_title = response['original_title']
