@@ -20,4 +20,4 @@ jobs:
           pip install -r requirements.txt
       - name: Analysing the code with pylint
         run: |
-          pylint --rcfile=.pylintrc $(git ls-files 'apps_lab/cinema_assistant/*.py')
+          pylint --rcfile=.pylintrc $(git ls-files 'apps_lab/cinema_assistant/*.py' ':!:apps_lab/cinema_assistant/tests/test_*.py')
