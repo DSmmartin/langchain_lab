@@ -22,6 +22,8 @@ jobs:
         run: |
           pylint --rcfile=.pylintrc $(git ls-files 'apps_lab/cinema_assistant/*.py' ':!:apps_lab/cinema_assistant/tests/test_*.py')
       - name: Run tests
+        env:
+          PYTHONPATH: apps_lab
         run: |
           pytest --cov=apps_lab/cinema_assistant/tests --cov-report=xml
       - name: Publish test results
